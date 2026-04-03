@@ -37,11 +37,17 @@ section {
   margin-top: 10px;
 }
 
-input {
+input[type='text'] {
   flex: 1;
   padding: 8px;
   border: 1px solid #ddd;
   border-radius: 4px;
+}
+
+input[type='checkbox'] {
+  flex: none;
+  margin-right: 10px;
+  cursor: pointer;
 }
 
 button {
@@ -68,8 +74,12 @@ li {
   border-bottom: 1px solid #ddd;
   text-align: left;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
+}
+
+li span {
+  flex: 1;
 }
 
 li:last-child {
@@ -86,6 +96,75 @@ li:last-child {
 
 .delete-btn:hover {
   background-color: #d32f2f;
+}
+
+.edit-btn {
+  background-color: #61dafb;
+  color: #282c34;
+  padding: 6px 12px;
+  font-size: 0.8rem;
+  margin-left: 10px;
+}
+
+.edit-btn:hover {
+  background-color: #21a1c9;
+}
+
+.edit-input {
+  flex: 1;
+  padding: 6px 8px;
+  border: 1px solid #61dafb;
+  border-radius: 4px;
+  font-size: 1rem;
+  margin-left: 8px;
+}
+
+.items-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.items-header h2 {
+  margin: 0;
+}
+
+.item-count {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.filter-buttons {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.filter-btn {
+  padding: 6px 14px;
+  background-color: #e0e0e0;
+  color: #282c34;
+  font-size: 0.85rem;
+  border-radius: 4px;
+}
+
+.filter-btn:hover {
+  background-color: #c8c8c8;
+}
+
+.active-filter {
+  background-color: #61dafb;
+  color: #282c34;
+}
+
+.active-filter:hover {
+  background-color: #21a1c9;
+}
+
+li.completed span {
+  text-decoration: line-through;
+  color: #999;
 }
 
 .error {
