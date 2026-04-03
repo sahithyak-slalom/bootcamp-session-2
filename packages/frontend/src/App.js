@@ -50,7 +50,7 @@ function App() {
       }
 
       const result = await response.json();
-      setData([...data, result]);
+      setData(prev => [...prev, result]);
       setNewItem('');
     } catch (err) {
       setError('Error adding item: ' + err.message);
@@ -68,7 +68,7 @@ function App() {
         throw new Error('Failed to delete item');
       }
 
-      setData(data.filter(item => item.id !== itemId));
+      setData(prev => prev.filter(item => item.id !== itemId));
       setError(null);
     } catch (err) {
       setError('Error deleting item: ' + err.message);
@@ -91,7 +91,7 @@ function App() {
       }
 
       const updated = await response.json();
-      setData(data.map(item => item.id === itemId ? updated : item));
+      setData(prev => prev.map(item => item.id === itemId ? updated : item));
       setError(null);
     } catch (err) {
       setError('Error updating item: ' + err.message);
@@ -121,7 +121,7 @@ function App() {
       }
 
       const updated = await response.json();
-      setData(data.map(item => item.id === itemId ? updated : item));
+      setData(prev => prev.map(item => item.id === itemId ? updated : item));
       setEditingId(null);
       setEditingName('');
       setError(null);

@@ -3,6 +3,10 @@ class TodoPage {
     this.page = page;
   }
 
+  async reset() {
+    await this.page.request.post('http://localhost:3030/api/test/reset');
+  }
+
   async goto() {
     await this.page.goto('/');
   }
@@ -30,9 +34,10 @@ class TodoPage {
   async editItem(name, newName) {
     const item = this.page.locator('li').filter({ hasText: name });
     await item.locator('.edit-btn').click();
-    const editInput = item.locator('.edit-input');
+    // After clicking Edit the li replaces its text with an input, so locate globally
+    const editInput = this.page.locator('.edit-input');
     await editInput.fill(newName);
-    await item.locator('button', { hasText: 'Save' }).click();
+    await this.page.locator('button', { hasText: 'Save' }).click();
   }
 
   async setFilter(filterName) {

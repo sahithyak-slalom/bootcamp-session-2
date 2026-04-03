@@ -6,6 +6,7 @@ test.describe('Todo Workflow', () => {
 
   test.beforeEach(async ({ page }) => {
     todoPage = new TodoPage(page);
+    await todoPage.reset();
     await todoPage.goto();
     await todoPage.waitForLoad();
   });
@@ -79,6 +80,11 @@ test.describe('Todo Workflow', () => {
     const beforeCount = await todoPage.getItemCountText();
 
     await todoPage.toggleItem('Count Test Item');
+    // Wait for the count text to actually change after the PATCH response
+    await page.waitForFunction(
+      (before) => document.querySelector('.item-count')?.textContent !== before,
+      beforeCount
+    );
     const afterCount = await todoPage.getItemCountText();
 
     expect(beforeCount).not.toBe(afterCount);

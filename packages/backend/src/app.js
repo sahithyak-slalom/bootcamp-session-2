@@ -39,6 +39,13 @@ app.get('/', (req, res) => {
   res.status(200).json({ status: 'ok', message: 'Backend server is running' });
 });
 
+// Test-only reset endpoint: clears all items and re-seeds the database
+app.post('/api/test/reset', (req, res) => {
+  db.exec('DELETE FROM items');
+  initialItems.forEach(item => insertStmt.run(item));
+  res.status(200).json({ message: 'Database reset' });
+});
+
 // API Routes
 app.get('/api/items', (req, res) => {
   try {
